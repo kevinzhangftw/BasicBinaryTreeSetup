@@ -75,7 +75,23 @@ void BST::Insert(int value)
 // POST: Returns true iff target is in tree
 bool BST::Search(int target)
 {
-    // write your implementation here
+    return SearchHelper(root, target);
+}
+
+bool BST::SearchHelper(Node* nd, int target)
+{
+    if (nd == NULL) {
+        return false;
+    }
+    if (nd->data == target) {
+        return true;
+    }else{
+        if (nd->data > target) {
+            SearchHelper(nd->left, target);
+        }else{
+            SearchHelper(nd->right, target);
+        }
+    }
     return false;
 }
 
@@ -98,8 +114,11 @@ void BST::Print()
 // POST: Prints contents of tree in order
 void BST::InOrderPrint(Node* nd)
 {
-    // Write your implementation here
-    
+    if (nd != NULL) {
+        InOrderPrint(nd->left);
+        cout << nd->data <<  " ";
+        InOrderPrint(nd->right);
+    }
 }
 
 // Performs a pre-order traversal of tree
@@ -107,8 +126,11 @@ void BST::InOrderPrint(Node* nd)
 // POST: Prints contents of tree with pre order traversal
 void BST::PreOrderPrint(Node* nd)
 {
-    // Write your implementation here
-    
+    if (nd != NULL) {
+        cout << nd->data <<  " ";
+        InOrderPrint(nd->left);
+        InOrderPrint(nd->right);
+    }
 }
 
 // Performs an post-order traversal of tree
@@ -116,6 +138,9 @@ void BST::PreOrderPrint(Node* nd)
 // POST: Prints contents of tree with post order traversal
 void BST::PostOrderPrint(Node* nd)
 {
-    // Write your implementation here
-    
+    if (nd != NULL) {
+        InOrderPrint(nd->left);
+        InOrderPrint(nd->right);
+        cout << nd->data <<  " ";
+    }
 }

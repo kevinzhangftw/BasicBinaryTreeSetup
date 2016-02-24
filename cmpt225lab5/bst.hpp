@@ -72,6 +72,9 @@ private:
     // POST: Prints contents of tree with post order traversal
     void PostOrderPrint(Node* nd);
     
+    bool SearchHelper(Node* root, int target);
+
+    
 };
 
 #endif /* bst_hpp */
